@@ -1,0 +1,5 @@
+github_commit_bot/
+│── bot.py               # Main script to automate commits
+│── content_generator.py # Generates unique content for each commit
+│── config.py            # Configuration (repo details, commit messages)
+│── README.md            # Project documentation
