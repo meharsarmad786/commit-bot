@@ -1,7 +1,7 @@
 import os
 
 # Path to your local repository
-REPO_PATH = r"C:\Users\M Saad\Desktop\iifa tech\Github commit bot"  # Updated with your actual repo path
+REPO_PATH = r"/Users/app/Downloads/git"  # Updated with your actual repo path
 
 # File to modify
 FILE_NAME = "commit_log.txt"
