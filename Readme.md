@@ -1,6 +1,7 @@
 ===================================================
 🚀 GITHUB AUTO COMMIT BOT - WINDOWS & MACOS
 ===================================================
+Happy Coding! 💻🚀s
 
 This bot automates GitHub commits **10 times a day** at random intervals 
 to keep your repository active.
