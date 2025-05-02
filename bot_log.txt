@@ -16,3 +16,9 @@ Untracked files:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 2025-05-02 20:22:07 - Adding all modified files to commit...
+2025-05-02 20:22:07 - Command 'git stash' output: Saved working directory and index state WIP on main: ad5368f Update log file
+2025-05-02 20:22:07 - Error running command: git pull --rebase
+STDERR: error: cannot pull with rebase: You have unstaged changes.
+error: please commit or stash them.
+
+2025-05-02 20:22:07 - Unexpected error: Command 'git pull --rebase' returned non-zero exit status 128.. Continuing...
