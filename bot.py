@@ -95,13 +95,13 @@ def make_commit():
         log_message(f"✅ Recovered and pushed at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
 def main():
-    """Run commits every hour indefinitely."""
-    log_message("Starting hourly commit bot...")
+    """Run commits every 2 minutes indefinitely."""
+    log_message("Starting 2-minute interval commit bot...")
     while True:
         try:
             make_commit()
-            log_message("⏳ Sleeping for 1 hour...")
-            time.sleep(3600)  # Sleep for 1 hour (3600 seconds)
+            log_message("⏳ Sleeping for 2 minutes...")
+            time.sleep(120)  # Sleep for 2 minutes (120 seconds)
         except KeyboardInterrupt:
             log_message("Script stopped by user.")
             break
