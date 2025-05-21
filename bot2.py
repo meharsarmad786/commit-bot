@@ -200,4 +200,4 @@ def process_all_repositories(interval_minutes=30):
             time.sleep(60)  # Brief pause before retrying to avoid rapid error loops
 
 if __name__ == "__main__":
-    process_all_repositories(interval_minutes=30)  # Default to 30 minutes between cycles 
+    process_all_repositories(interval_minutes=5)  # Default to 30 minutes between cycles 
