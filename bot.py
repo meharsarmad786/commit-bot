@@ -5,9 +5,9 @@ import time
 from datetime import datetime
 
 # Configuration
-REPO_PATH = "/Users/app/Downloads/git"  # Your repo path
+REPO_PATH = "/Users/app/Documents/git"  # Your repo path
 FILE_NAME = "commit_log.txt"  # File to modify
-LOG_FILE = "/Users/app/Downloads/git_bot_log.txt"  # Log file outside the repo
+LOG_FILE = "/Users/app/Documents/git_bot_log.txt"  # Log file outside the repo
 COMMIT_MESSAGES = [
     "Add hourly update",
     "Update log file",

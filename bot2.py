@@ -5,7 +5,7 @@ import time
 from datetime import datetime
 
 # Configuration
-BASE_PATH = "/Users/app/Downloads"  # Base directory for repositories
+BASE_PATH = "/Users/app/Documents"  # Base directory for repositories
 LOG_FILE = os.path.join(BASE_PATH, "multi_repo_bot_log.txt")  # Log file outside the repos
 
 # List of repositories to manage
