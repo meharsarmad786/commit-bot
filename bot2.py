@@ -173,7 +173,7 @@ def make_commit_for_repo(repo):
     except Exception as e:
         log_message(f"[{repo['name']}] Unexpected error: {e}")
 
-def process_all_repositories(interval_minutes=30):
+def process_all_repositories(interval_minutes=21600):
     """Process all repositories with a delay between each."""
     log_message(f"Starting multi-repository commit bot (interval: {interval_minutes} minutes)...")
     
@@ -185,12 +185,12 @@ def process_all_repositories(interval_minutes=30):
                 
                 # Short delay between repositories to avoid overwhelming
                 log_message("Waiting 30 seconds before processing next repository...")
-                time.sleep(30)
+                time.sleep(21600)
             
             # Wait for the specified interval before the next round
             next_run = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             log_message(f"⏳ All repositories processed. Next run at {next_run} (in {interval_minutes} minutes)...")
-            time.sleep(interval_minutes * 60)
+            time.sleep(interval_minutes * 43200)
             
         except KeyboardInterrupt:
             log_message("Script stopped by user.")

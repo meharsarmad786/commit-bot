@@ -101,13 +101,13 @@ def main():
         try:
             make_commit()
             log_message("⏳ Sleeping for 2 minutes...")
-            time.sleep(120)  # Sleep for 2 minutes (120 seconds)
+            time.sleep(21600)  # Sleep for 2 minutes (120 seconds)
         except KeyboardInterrupt:
             log_message("Script stopped by user.")
             break
         except Exception as e:
             log_message(f"Unexpected error: {e}. Continuing...")
-            time.sleep(60)  # Brief pause before retrying to avoid rapid error loops
+            time.sleep(21600)  # Brief pause before retrying to avoid rapid error loops
 
 if __name__ == "__main__":
     main()
