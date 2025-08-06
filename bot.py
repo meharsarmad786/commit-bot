@@ -70,13 +70,16 @@ def make_commit():
         log_message(f"Committing with message: {commit_msg}")
         git_command(f'git commit -m "{commit_msg}"')
 
-        # Pull with rebase to sync with remote
-        log_message("Pulling with rebase to sync with remote...")
-        git_command("git pull --rebase")
-
-        # Push changes
+        # Push changes first
         log_message("Pushing changes to GitHub...")
         git_command("git push")
+
+        # Pull with rebase to sync with remote (if needed)
+        log_message("Checking if pull is needed...")
+        try:
+            git_command("git pull --rebase")
+        except subprocess.CalledProcessError:
+            log_message("Pull not needed or failed, continuing...")
 
         log_message(f"✅ Committed and pushed at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
