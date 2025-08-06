@@ -5,9 +5,9 @@ import time
 from datetime import datetime
 
 # Configuration
-REPO_PATH = "/Users/app/Documents/git"  # Your repo path
+REPO_PATH = "/Users/app/Downloads/git"  # Your repo path
 FILE_NAME = "commit_log.txt"  # File to modify
-LOG_FILE = "/Users/app/Documents/git_bot_log.txt"  # Log file outside the repo
+LOG_FILE = "/Users/app/Downloads/git/bot_log.txt"  # Log file in the repo
 COMMIT_MESSAGES = [
     "Add hourly update",
     "Update log file",
@@ -95,13 +95,13 @@ def make_commit():
         log_message(f"✅ Recovered and pushed at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
 def main():
-    """Run commits every 2 minutes indefinitely."""
-    log_message("Starting 2-minute interval commit bot...")
+    """Run commits 4 times a day (every 6 hours)."""
+    log_message("Starting 4-times-daily commit bot...")
     while True:
         try:
             make_commit()
-            log_message("⏳ Sleeping for 2 minutes...")
-            time.sleep(21600)  # Sleep for 2 minutes (120 seconds)
+            log_message("⏳ Sleeping for 6 hours until next commit...")
+            time.sleep(21600)  # Sleep for 6 hours (21600 seconds)
         except KeyboardInterrupt:
             log_message("Script stopped by user.")
             break
