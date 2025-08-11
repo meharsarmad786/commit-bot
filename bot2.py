@@ -5,7 +5,7 @@ import time
 from datetime import datetime
 
 # Configuration
-BASE_PATH = "/Users/app/Documents"  # Base directory for repositories
+BASE_PATH = "/Users/app/Downloads"  # Base directory for repositories
 LOG_FILE = os.path.join(BASE_PATH, "multi_repo_bot_log.txt")  # Log file outside the repos
 
 # List of repositories to manage
@@ -148,9 +148,16 @@ def make_commit_for_repo(repo):
         log_message(f"[{repo['name']}] Committing with message: {commit_msg}")
         git_command(f'git commit -m "{commit_msg}"', repo_path)
         
-        # Push changes
+        # Push changes first
         log_message(f"[{repo['name']}] Pushing changes to GitHub...")
         git_command("git push", repo_path)
+        
+        # Try to pull with rebase (optional)
+        log_message(f"[{repo['name']}] Checking if pull is needed...")
+        try:
+            git_command("git pull --rebase", repo_path)
+        except subprocess.CalledProcessError:
+            log_message(f"[{repo['name']}] Pull not needed or failed, continuing...")
         
         log_message(f"[{repo['name']}] ✅ Committed and pushed successfully.")
     
@@ -173,9 +180,10 @@ def make_commit_for_repo(repo):
     except Exception as e:
         log_message(f"[{repo['name']}] Unexpected error: {e}")
 
-def process_all_repositories(interval_minutes=21600):
+def process_all_repositories(interval_hours=6):
     """Process all repositories with a delay between each."""
-    log_message(f"Starting multi-repository commit bot (interval: {interval_minutes} minutes)...")
+    interval_seconds = interval_hours * 3600  # Convert hours to seconds
+    log_message(f"Starting multi-repository commit bot (interval: {interval_hours} hours)...")
     
     while True:
         try:
@@ -185,12 +193,12 @@ def process_all_repositories(interval_minutes=21600):
                 
                 # Short delay between repositories to avoid overwhelming
                 log_message("Waiting 30 seconds before processing next repository...")
-                time.sleep(21600)
+                time.sleep(30)
             
             # Wait for the specified interval before the next round
             next_run = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            log_message(f"⏳ All repositories processed. Next run at {next_run} (in {interval_minutes} minutes)...")
-            time.sleep(interval_minutes * 43200)
+            log_message(f"⏳ All repositories processed. Next run at {next_run} (in {interval_hours} hours)...")
+            time.sleep(interval_seconds)
             
         except KeyboardInterrupt:
             log_message("Script stopped by user.")
@@ -200,4 +208,4 @@ def process_all_repositories(interval_minutes=21600):
             time.sleep(60)  # Brief pause before retrying to avoid rapid error loops
 
 if __name__ == "__main__":
-    process_all_repositories(interval_minutes=5)  # Default to 30 minutes between cycles 
+    process_all_repositories(interval_hours=6)  # Default to 6 hours between cycles (4 times per day) 
