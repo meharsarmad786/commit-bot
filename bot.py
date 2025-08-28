@@ -74,13 +74,6 @@ def make_commit():
         log_message("Pushing changes to GitHub...")
         git_command("git push")
 
-        # Pull with rebase to sync with remote (if needed)
-        log_message("Checking if pull is needed...")
-        try:
-            git_command("git pull --rebase")
-        except subprocess.CalledProcessError:
-            log_message("Pull not needed or failed, continuing...")
-
         log_message(f"✅ Committed and pushed at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
     except subprocess.CalledProcessError as e:
@@ -88,11 +81,12 @@ def make_commit():
         # Stash changes, pull, and retry
         log_message("Stashing changes to recover...")
         git_command("git stash")
-        git_command("git pull --rebase")
+        git_command("git pull")
         git_command("git stash pop")
         # Retry commit and push
         log_message("Retrying commit and push after stash...")
         git_command("git add .")
+        commit_msg = random.choice(COMMIT_MESSAGES)
         git_command(f'git commit -m "{commit_msg} (retry)"')
         git_command("git push")
         log_message(f"✅ Recovered and pushed at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
