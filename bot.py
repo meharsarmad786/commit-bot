@@ -92,19 +92,19 @@ def make_commit():
         log_message(f"✅ Recovered and pushed at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
 def main():
-    """Run commits 4 times a day (every 6 hours)."""
-    log_message("Starting 4-times-daily commit bot...")
+    """Run commits 6 times a day (every 4 hours)."""
+    log_message("Starting 6-times-daily commit bot...")
     while True:
         try:
             make_commit()
-            log_message("⏳ Sleeping for 6 hours until next commit...")
-            time.sleep(21600)  # Sleep for 6 hours (21600 seconds)
+            log_message("⏳ Sleeping for 4 hours until next commit...")
+            time.sleep(14400)  # Sleep for 4 hours (14400 seconds)
         except KeyboardInterrupt:
             log_message("Script stopped by user.")
             break
         except Exception as e:
             log_message(f"Unexpected error: {e}. Continuing...")
-            time.sleep(21600)  # Brief pause before retrying to avoid rapid error loops
+            time.sleep(14400)  # Brief pause before retrying to avoid rapid error loops
 
 if __name__ == "__main__":
     main()

@@ -719,7 +719,7 @@ def suggest_authentication_methods():
     log_message("   - Test HTTPS: git ls-remote https://github.com/octocat/Hello-World.git")
     log_message("="*60 + "\n")
 
-def process_all_repositories(interval_hours=6):
+def process_all_repositories(interval_hours=4):
     """Process all repositories with a delay between each."""
     interval_seconds = interval_hours * 3600  # Convert hours to seconds
     log_message(f"Starting multi-repository commit bot (interval: {interval_hours} hours)...")
@@ -764,7 +764,8 @@ def process_all_repositories(interval_hours=6):
                 time.sleep(30)
             
             # Wait for the specified interval before the next round
-            next_run = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            from datetime import datetime, timedelta
+            next_run = (datetime.now() + timedelta(hours=interval_hours)).strftime('%Y-%m-%d %H:%M:%S')
             log_message(f"⏳ All repositories processed. Next run at {next_run} (in {interval_hours} hours)...")
             time.sleep(interval_seconds)
             
@@ -776,4 +777,4 @@ def process_all_repositories(interval_hours=6):
             time.sleep(60)  # Brief pause before retrying to avoid rapid error loops
 
 if __name__ == "__main__":
-    process_all_repositories(interval_hours=6)  # Default to 6 hours between cycles (4 times per day) 
+    process_all_repositories(interval_hours=4)  # Default to 4 hours between cycles (6 times per day) 
